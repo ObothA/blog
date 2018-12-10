@@ -1,0 +1,111 @@
+@layout("layouts.app")
+ 
+@section('content')
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('/img/Kaaba.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1>{{ post.title }}</h1>
+              <span class="meta">Posted by
+                <a href="#">{{ post.username }}</a>
+                on {{ post.createdAt.toDateString() }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+ 
+    <!-- Post Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="message">
+                    <p class="alert alert-info">your comment has been noted! wait for approval by the Admin</p>
+              </div>
+                
+            @if(post.media && post.mediaType.includes("image"))
+              <img src="{{ post.media }}" alt="image" class="img-fluid"/>
+            @endif
+
+            @if(post.media && post.mediaType.includes("audio"))
+              <audio controls>
+                <source src="{{ post.media }}" type="audio/ogg">
+                <source src="{{ post.media }}" type="audio/mpeg">
+                <source src="{{ post.media }}" type="audio/wav">
+                <p>Your browser probably doesn't support  audio</p>
+              </audio>
+            @endif
+
+            @if(post.media && post.mediaType.includes("video"))
+                <video width="100%" height="80%" controls>
+                  <source src="{{ post.media }}" type="video/mp4">
+                  <source src="{{ post.media }}" type="video/ogg">
+                  Your browser does not support the video tag.
+                </video>
+            @endif
+            {{ post.content }}
+
+          </div>
+        </div>
+        <hr>
+        <!-- comments -->
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <button class="btn-sm btn btn-outline-success customButton">view comments</button>
+              <div class="commentsDivInitial">
+                
+              <form class="commentForm" id={{ id }} onsubmit=handleSubmit()  method="POST" encType="multipart/form-data">
+                  <div class="control-group">
+                      <div class="form-group floating-label-form-group controls">
+                        <label>Username</label>
+                        <input id="username" maxlength= 20 type="text" name="username" placeholder="Username" class="form-control">
+                      </div>
+                  </div>
+                  <div class="control-group">
+                      <div class="form-group floating-label-form-group controls">
+                        <label>Comment</label>
+                        <input id="comment" type="text" name="comment" placeholder="comment" class="form-control">
+                      </div>
+                  </div>
+                  <div class="form-group my-4 text-left">
+                      <button class="btn btn-primary">Submit Comment</button>
+                  </div>
+                </form>
+
+                <!-- real comments here-->
+                <!-- give comment username, body, status: approved || not-approved -->
+                  @each(comment in post.comments)
+                    @if(auth)
+                    <table class="commentsTable">
+                      <tr><td class="name">{{ comment.username }}</td></tr>
+                      <tr><td> {{ comment.comment }}</td></tr>
+                      @if(comment.status === "not-approved")
+                    <tr><td><input type="submit" class="btn btn-outline-info btn-sm approveBtn {{ id }}" value="approve comment" onclick=x()  id="{{ comment.id }}"/></td></tr>
+                      @endif
+                    </table>
+                    @else
+                      @if(comment.status === "approved")
+                        <table class="commentsTable">
+                          <tr><td class="name">{{ comment.username }}</td></tr>
+                          <tr><td> {{ comment.comment }}</td></tr>
+                        </table>
+                      @endif
+                    @endif
+                  @endeach
+                <!-- real comments here-->
+
+              </div>
+            </div>
+        </div>
+        <!-- comments -->
+      </div>
+    </article>
+ 
+    <hr>
+    
+@endsection

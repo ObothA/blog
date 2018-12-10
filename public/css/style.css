@@ -1,0 +1,30 @@
+.commentsDivInitial{
+    display: none;
+}
+.commentsDivAfterClick{
+    display: block;
+}
+
+.commentsTable{
+    margin: 3%;
+}
+
+.name{
+    color: #0085a1;
+}
+
+.message{
+    display: none;
+}
+
+.messageActivated{
+    display: block;
+}
+
+.approveBtn{
+    display: block;
+}
+
+.approveBtnRemoved{
+    display: none;
+}
