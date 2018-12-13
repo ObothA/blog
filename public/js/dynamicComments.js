@@ -54,6 +54,10 @@ function x() {
 function onDeletePost() {
     event.preventDefault();
     const id = event.target.id;
+    const message = document.getElementById(`meso${id}`);
+    if(message){
+        message.className = "messageDeleted";
+    }
 
     const Http = new XMLHttpRequest();
     const url = `/posts/delete/${id}`;
@@ -63,21 +67,10 @@ function onDeletePost() {
     Http.send();
 }
 
-function onEditPost(){
-    event.preventDefault();
-    const id = event.target.id;
-
-    const Http = new XMLHttpRequest();
-    const url = `/posts/edit/${id}`;
-
-    Http.open("GET", url, true);
-    Http.send();  
-}
 
 function onDeleteComment(){
     const commentId = event.target.className.split(" ").pop();
     // alert(commentId);
-    // change button text
 
     event.target.className = "btn-sm btn btn-outline-success deleteCommentButton"
     event.target.innerHTML = "Deleted";

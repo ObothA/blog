@@ -36,3 +36,11 @@
 .deleteCommentButtonDeactivated{
     display: none;
 }
+
+.messageDeletePost{
+    display: none;
+}
+
+.messageDeleted{
+    display: block;
+}

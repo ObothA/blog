@@ -81,7 +81,7 @@ app.post("/posts/delete/:id", deletePostController);
 /** edit post get request*/
 app.get("/posts/edit/:postId", editPostController);
 /**update post POST request */
-app.post("/posts/update/:postId", updatePostController);
+app.post("/posts/update", updatePostController);
 /** get request for login */
 app.get("/auth/login", loginController);
 app.post("/users/login",loginUserController);

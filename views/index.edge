@@ -30,6 +30,9 @@
           </a>
           <p class="post-meta">
             Posted by {{ post.username }} on {{ post.createdAt.toDateString() }}
+          <div class="messageDeletePost" id="meso{{ post._id }}">
+                <p class="alert alert-info">Post has been deleted. won't be available on refresh</p>
+            </div>
             <!-- manage dropdown -->
             @if(auth)
               <div class="dropdown">

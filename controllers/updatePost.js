@@ -3,9 +3,8 @@ const Post = require("../database/models/Post");
 const ObjectID = require('mongodb').ObjectID;
 
 module.exports = (req, res) => {
-    const postId = new ObjectID(req.params.postId);
-    const { username, title, description, content } = req.body;
-    const { mediaFile } = req.files;
+    const { username, title, description, content, postId } = req.body;
+    const  mediaFile  = req.files.media;
     let media;
     let mediaType;
     let updateObject;
@@ -15,20 +14,38 @@ module.exports = (req, res) => {
             if (error) {
                 console.log(error);
             } else {
+                console.log("we have media");
                 media = `/posts/${mediaFile.name}`;
                 mediaType = mediaFile.mimetype
                 updateObject = { username, title, description, content, media, mediaType }
                 // and update query goes here
-                Post.updateMany( { "_id": postId }, { $set: { "username": username } }, (err) => {
-                    if(err){
-                        console.log(err);
-                    } else {
+                Post.findByIdAndUpdate( 
+                    postId,
+                    updateObject,
+                    { new: true },
+                    (err,x) => {
+                        if(err){
+                            console.log(err);
+                        }
                         res.redirect("/");
                     }
-                });
+                    );
             }
         });
     } else {
-        // query goes here
+        console.log("no media");
+        updateObject = { username, title, description, content }
+        // and update query goes here
+        Post.findByIdAndUpdate( 
+            postId,
+            updateObject,
+            { new: true },
+            (err,x) => {
+                if(err){
+                    console.log(err);
+                }
+                res.redirect("/");
+            }
+            );
     }
 }

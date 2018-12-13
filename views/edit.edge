@@ -18,8 +18,11 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 offset-md-2">
-      <form action="/posts/update/{{ post[0]._id }}" method="POST" encType="multipart/form-data">
+      <form action="/posts/update" method="POST" encType="multipart/form-data">
           <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <input type="hidden" name="postId" class="form-control" value="{{ post[0]._id }}"  required>
+              </div>
             <div class="form-group floating-label-form-group controls">
               <label>Username</label>
             <input type="text" name="username" placeholder="username" class="form-control" value="{{ post[0].username }}"  required>
@@ -44,7 +47,9 @@
             </div>
           </div>
           <div class="form-group mt-3">
-            <span> note: this will replace previous media. and if no upload is chosen, previous is removed</span>
+            <p> note:</p> 
+            <span>if a new media file is uploaded, it will replace the previous media.</span>
+            <p> If no media file is chosen, previous media will still be availbale</p>
             <input type="file" name="media" class="form-control-file" accept="image/*,video/*, audio/*">
           </div>
           <div class="form-group my-4 text-center">
