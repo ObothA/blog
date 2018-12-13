@@ -24,10 +24,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
-              <div class="message">
-                    <p class="alert alert-info">your comment has been noted! wait for approval by the Admin</p>
-              </div>
-                
+     
             @if(post.media && post.mediaType.includes("image"))
               <img src="{{ post.media }}" alt="image" class="img-fluid"/>
             @endif
@@ -53,12 +50,15 @@
           </div>
         </div>
         <hr>
+
+        
         <!-- comments -->
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-              <button class="btn-sm btn btn-outline-success customButton">view comments</button>
+              
+              <button class="btn-sm btn btn-outline-success customButton" onclick=handleComments()>view comments</button>
+              
               <div class="commentsDivInitial">
-                
               <form class="commentForm" id={{ id }} onsubmit=handleSubmit()  method="POST" encType="multipart/form-data">
                   <div class="control-group">
                       <div class="form-group floating-label-form-group controls">
@@ -72,6 +72,14 @@
                         <input id="comment" type="text" name="comment" placeholder="comment" class="form-control">
                       </div>
                   </div>
+
+                  @if(!auth)
+                  <!-- message alert after posting comment-->
+                    <div class="message">
+                      <p class="alert alert-info">your comment has been noted! wait for approval by the Admin</p>
+                    </div>
+                  @endif
+                  
                   <div class="form-group my-4 text-left">
                       <button class="btn btn-primary">Submit Comment</button>
                   </div>
@@ -85,8 +93,15 @@
                       <tr><td class="name">{{ comment.username }}</td></tr>
                       <tr><td> {{ comment.comment }}</td></tr>
                       @if(comment.status === "not-approved")
-                    <tr><td><input type="submit" class="btn btn-outline-info btn-sm approveBtn {{ id }}" value="approve comment" onclick=x()  id="{{ comment.id }}"/></td></tr>
+                        <tr><td>
+                                <input type="submit" class="btn btn-outline-info btn-sm approveBtn {{ id }}" value="approve comment" onclick=x()  id="{{ comment.id }}"/>
+                                <button class="btn-sm btn btn-outline-danger deleteCommentButton {{ comment.id }}" onclick=onDeleteComment()>Delete comment</button>
+                        </td></tr>
+                      @else
+                        <!-- delete comment button -->
+                        <tr><td><button class="btn-sm btn btn-outline-danger deleteCommentButton {{ comment.id }}" onclick=onDeleteComment()>Delete comment</button></td></tr>
                       @endif
+                    
                     </table>
                     @else
                       @if(comment.status === "approved")

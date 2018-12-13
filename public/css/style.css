@@ -28,3 +28,11 @@
 .approveBtnRemoved{
     display: none;
 }
+
+.deleteCommentButton{
+    margin: 2%;
+}
+
+.deleteCommentButtonDeactivated{
+    display: none;
+}

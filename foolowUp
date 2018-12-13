@@ -1,7 +1,9 @@
+68.183.71.31
+
 whats compass for mongodb, get it
 
 -think about older posts too. it should work
 -show which posts need comment approval and tab on navigation showing number of posts that need approval
-- delete post and comment
--admin shouldnt see wait for admin approval after commenting
+*************** -delete post~, delete comment [manage dropdown, finish edit post]
+-admin shouldnt see "wait for admin approval after commenting"
 

@@ -22,6 +22,10 @@ const loginUserController = require("./controllers/loginUser");
 const logoutController = require("./controllers/logout");
 const addCommentController = require("./controllers/addComment");
 const approveCommentController = require("./controllers/approveComment");
+const deletePostController = require("./controllers/deletePost");
+const deleteCommentController = require("./controllers/deleteComment");
+const editPostController = require("./controllers/editPost");
+const updatePostController = require("./controllers/updatePost");
 /** import authentication middleware */
 const auth = require("./middleware/auth");
 
@@ -70,8 +74,14 @@ app.get("/", homePageController);
 app.get("/posts/new", auth, createPostController);
 /** post for create new post */
 app.post("/posts/store", storePostController);
-/** post route to handle click on single blog post */
+/** get route to handle click on single blog post */
 app.get("/post/:id", getPostController);
+/** post request for delete post */
+app.post("/posts/delete/:id", deletePostController);
+/** edit post get request*/
+app.get("/posts/edit/:postId", editPostController);
+/**update post POST request */
+app.post("/posts/update/:postId", updatePostController);
 /** get request for login */
 app.get("/auth/login", loginController);
 app.post("/users/login",loginUserController);
@@ -87,6 +97,9 @@ app.post("/comments/add/:id", addCommentController);
 
 /** approvecomments */
 app.post("/comments/approve/:commentId/:postId", approveCommentController);
+
+/** delete comment */
+app.post("/comments/delete/:commentId", deleteCommentController);
 
 // fix these *******************
 app.get("/about", (req, res) => {

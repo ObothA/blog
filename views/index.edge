@@ -28,7 +28,21 @@
               {{ post.title }}
             </h2>
           </a>
-          <p class="post-meta">Posted by {{ post.username }} on {{ post.createdAt.toDateString() }}
+          <p class="post-meta">
+            Posted by {{ post.username }} on {{ post.createdAt.toDateString() }}
+            <!-- manage dropdown -->
+            @if(auth)
+              <div class="dropdown">
+                  <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    manage
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#" id="{{ post._id }}"onclick=onDeletePost() >Delete</a>
+                    <a class="dropdown-item" href="/posts/edit/{{ post._id }}" >Edit</a>
+                  </div>
+              </div>
+            @endif
+            <!-- manage dropdown -->
           </p>
         </div>
         <hr>
