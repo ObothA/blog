@@ -1,0 +1,41 @@
+@layout("layouts.app")
+
+@section("content")
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('/img/Kaaba.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Blog Title</h1>
+            <span class="subheading">Active user accounts</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      @each(user in users)
+        <div class="post-preview">
+            <h5 class="post-title"> User name:</h5> <p class="post-meta"> {{ user.username }} </p>
+            <h5 class="post-title"> Email:</h5> <p class="post-meta"> {{ user.email }} </p>
+            <!-- delete comment button -->
+            <button class="btn-sm btn btn-outline-danger {{ user._id }}" onclick=onDeleteUserAccount()>Delete user account</button>
+        </div>
+        <hr>
+      @endeach
+      
+
+    </div>
+  </div>
+</div>
+ 
+<hr>
+
+@endsection

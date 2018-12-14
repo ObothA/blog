@@ -70,14 +70,30 @@ function onDeletePost() {
 
 function onDeleteComment(){
     const commentId = event.target.className.split(" ").pop();
-    // alert(commentId);
 
     event.target.className = "btn-sm btn btn-outline-success deleteCommentButton"
     event.target.innerHTML = "Deleted";
 
+    if(commentId){
     const Http = new XMLHttpRequest();
     const url = `/comments/delete/${commentId}`;
     Http.open("POST", url, true);
     Http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     Http.send();
+    }
+}
+
+function onDeleteUserAccount(){
+    const userAccountId = event.target.className.split(" ").pop();
+
+    event.target.className = "btn-sm btn btn-outline-success"
+    event.target.innerHTML = "Deleted";
+
+    if(userAccountId){
+    const Http = new XMLHttpRequest();
+    const url = `/accounts/delete/${userAccountId}`;
+    Http.open("POST", url, true);
+    Http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    Http.send();
+    }
 }

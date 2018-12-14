@@ -26,6 +26,8 @@ const deletePostController = require("./controllers/deletePost");
 const deleteCommentController = require("./controllers/deleteComment");
 const editPostController = require("./controllers/editPost");
 const updatePostController = require("./controllers/updatePost");
+const getUserAccountsController = require("./controllers/getUserAccounts");
+const deleteUSerAccountController = require("./controllers/deleteUserAccount");
 /** import authentication middleware */
 const auth = require("./middleware/auth");
 
@@ -85,6 +87,10 @@ app.post("/posts/update", updatePostController);
 /** get request for login */
 app.get("/auth/login", loginController);
 app.post("/users/login",loginUserController);
+/** get request for user accounts accessed by admin*/
+app.get("/users/accounts", getUserAccountsController);
+/** post request to delete account */
+app.post("/accounts/delete/:userAccountId", deleteUSerAccountController)
 /** logout */
 app.get("/auth/logout", logoutController);
 /** route for creating new users */
