@@ -30,11 +30,13 @@
           </a>
           <p class="post-meta">
             Posted by {{ post.username }} on {{ post.createdAt.toDateString() }}
-          <div class="messageDeletePost" id="meso{{ post._id }}">
+            <div class="messageDeletePost" id="meso{{ post._id }}">
                 <p class="alert alert-info">Post has been deleted. won't be available on refresh</p>
             </div>
             <!-- manage dropdown -->
             @if(auth)
+            <!-- approvals -->
+            <h6>approvals<span class="badge badge-info">{{ post.approvalCount }}</span></h6>
               <div class="dropdown">
                   <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     manage
