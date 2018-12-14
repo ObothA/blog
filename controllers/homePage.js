@@ -16,7 +16,7 @@ module.exports = async(req, res) => {
             post.approvalCount = count;
     });
 
-    let countPosts = 0;
+    let countPosts = 0.0;
     posts.map((post) => {
         if(post.approvalCount > 0){
             countPosts++;

@@ -10,7 +10,13 @@
           <div class="site-heading">
             <h1>Blog Title</h1>
             <span class="subheading">Introductory statements here</span>
-            <span><span class="badge badge-info">{{ countPosts }}</span> Posts need comment approval</span>
+              @if(auth)
+                @if(countPosts)
+                  <p><span class="badge badge-info">{{ countPosts }}</span> Posts need comment approval</p>
+                @else
+                  <p> No post currently requires post approval </p>
+                @endif
+              @endif
           </div>
         </div>
       </div>
