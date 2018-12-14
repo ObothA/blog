@@ -16,7 +16,15 @@ module.exports = async(req, res) => {
             post.approvalCount = count;
     });
 
+    let countPosts = 0;
+    posts.map((post) => {
+        if(post.approvalCount > 0){
+            countPosts++;
+        }
+    })
+
     res.render("index", {
-        posts
+        posts,
+        countPosts
     });
 };
