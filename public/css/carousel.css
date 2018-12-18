@@ -1,0 +1,24 @@
+h5 {
+    display: inline-block;
+    padding: 10px;
+    background:  #17a2b8;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+  }
+  
+  .p {
+    text-align: center;
+    padding-top: 40px;
+    font-size: 13px;
+  }
+
+  .adverts{
+    border: 1px solid  #17a2b8;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+  }

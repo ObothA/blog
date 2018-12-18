@@ -1,4 +1,4 @@
-const express = require("express"); 
+const express = require("express");
 const path = require("path");
 const expressEdge = require("express-edge");
 const mongoose = require("mongoose");
@@ -65,7 +65,7 @@ app.use(bodyParser.urlencoded({
 app.use(connectFlash());
 
 /** conects with edge to help display some things */
-app.use("*", (req,res,next) => {
+app.use("*", (req, res, next) => {
     edge.global("auth", req.session.userId);
     next();
 });
@@ -86,7 +86,7 @@ app.get("/posts/edit/:postId", editPostController);
 app.post("/posts/update", updatePostController);
 /** get request for login */
 app.get("/auth/login", loginController);
-app.post("/users/login",loginUserController);
+app.post("/users/login", loginUserController);
 /** get request for user accounts accessed by admin*/
 app.get("/users/accounts", getUserAccountsController);
 /** post request to delete account */
@@ -94,9 +94,9 @@ app.post("/accounts/delete/:userAccountId", deleteUSerAccountController)
 /** logout */
 app.get("/auth/logout", logoutController);
 /** route for creating new users */
-app.get("/auth/register",createUserController);
+app.get("/auth/register", createUserController);
 /** post route to stroe new users */
-app.post("/users/register",storeUsercontroller);
+app.post("/users/register", storeUsercontroller);
 
 /** add comments */
 app.post("/comments/add/:id", addCommentController);
@@ -115,9 +115,14 @@ app.get("/contact", (req, res) => {
     res.render("contact");
 });
 
- 
 
 
 app.listen(3000, () => {
     console.log("App listening on port 3000");
+});
+
+process.on('SIGTERM', () => {
+    app.close(() => {
+        console.log('Process terminated')
+    })
 });
