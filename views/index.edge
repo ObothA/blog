@@ -28,9 +28,13 @@
 <div class="container">
 <div class="col-sm-5  mx-auto">
       @each(advert in adverts)
-        <span class="getUrl {{ advert.media }}"></span>
+        @if(advert)
+          <span class="getUrl {{ advert.media }}"></span>
+        @endif
       @endeach
-      <img src="{{ adverts[0].media }}" alt="advert" id="advertBox" >
+      @if(adverts[0].media)
+        <img src="{{ adverts[0].media }}" alt="advert" id="advertBox" >
+      @endif
 </div>
 </div>
 <!-- end of advert -->
