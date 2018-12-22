@@ -1,4 +1,5 @@
 const Post = require("../database/models/Post");
+const Advert = require("../database/models/Advert");
 
 module.exports = async(req, res) => {
     let posts = await Post.find({})
@@ -23,8 +24,11 @@ module.exports = async(req, res) => {
         }
     })
 
+    let adverts = await Advert.find({})
+
     res.render("index", {
         posts,
-        countPosts
+        countPosts,
+        adverts
     });
 };

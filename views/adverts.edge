@@ -1,0 +1,68 @@
+@layout("layouts.app")
+
+@section("content")
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/img/Kaaba.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Manage Adverts</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
+
+  <!-- adverts -->
+
+  <!-- adverts -->
+   
+  <div class="container">
+    <!-- adverts -->
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          @each(advert in adverts)
+            <div class="post-preview">
+              <h2 class="post-title"> {{ advert.name }} </h2>
+              <img src="{{ advert.media }}" alt="advert" class="img-fluid"/>
+              <p class="post-meta">
+                Created on {{ advert.createdAt.toDateString() }}
+                <div class="messageDeleteAdvert" id="meso{{ advert._id }}">
+                    <p class="alert alert-info">Advert has been deleted. won't be available on refresh</p>
+                </div>
+                <!-- Delete button -->
+              <button class="btn-sm btn btn-outline-danger deleteAdvertButton" id="{{ advert._id }}" onclick=onDeleteAdvert()>Delete Advert</button>
+                <!-- Delete button -->
+              </p>
+            </div>
+            <hr>
+          @endeach
+        
+        </div>
+      </div>
+    <!-- adverts -->
+
+
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <form action="/adverts/store" method="POST" encType="multipart/form-data">
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Name</label>
+              <input type="text" name="name" placeholder="Name" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <input type="file" name="media" class="form-control-file" accept="image/*">
+          </div>
+          <div class="form-group my-4 text-center">
+            <button class="btn btn-primary">Save Advert</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+@endsection

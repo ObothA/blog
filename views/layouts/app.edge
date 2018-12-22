@@ -10,6 +10,7 @@
 
     <title>Clean Blog - Start Bootstrap Theme</title>
 
+
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -27,7 +28,7 @@
 
   </head>
 
-  <body>
+  <body onload="handleSlider()">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -51,6 +52,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/users/accounts">User accounts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/adverts">Adverts</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/auth/logout">Logout</a>
@@ -134,7 +138,7 @@
 <script src='https://unpkg.com/popper.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
 
-<script  src="/js/carousel.js"></script>
+<script  src="/js/slider.js"></script>
 
 
     <!-- Custom scripts for this template -->

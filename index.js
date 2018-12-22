@@ -28,6 +28,9 @@ const editPostController = require("./controllers/editPost");
 const updatePostController = require("./controllers/updatePost");
 const getUserAccountsController = require("./controllers/getUserAccounts");
 const deleteUSerAccountController = require("./controllers/deleteUserAccount");
+const advertsGetController = require("./controllers/advertsGetController");
+const advertsPostController = require("./controllers/advertsPost");
+const deleteAdvertController = require("./controllers/deleteAdvert");
 /** import authentication middleware */
 const auth = require("./middleware/auth");
 
@@ -106,6 +109,13 @@ app.post("/comments/approve/:commentId/:postId", approveCommentController);
 
 /** delete comment */
 app.post("/comments/delete/:commentId", deleteCommentController);
+
+/** handle adverts get request*/
+app.get("/adverts", advertsGetController);
+/** handle post request for save advert*/
+app.post("/adverts/store", advertsPostController);
+/**delete advert */
+app.post("/adverts/delete/:AdvertId", deleteAdvertController)
 
 // fix these *******************
 app.get("/about", (req, res) => {

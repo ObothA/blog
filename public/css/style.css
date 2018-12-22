@@ -44,3 +44,17 @@
 .messageDeleted{
     display: block;
 }
+
+.messageDeleteAdvert{
+    display: none;
+}
+
+.messageDeleteAdvertActivated{
+    display: block;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    height: 200px;
+  }
