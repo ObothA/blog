@@ -21,6 +21,6 @@ function handleSlider(){
         console.log(count);
         count++
     },
-    3000);
+    6000);
 }
 }

@@ -24,7 +24,7 @@ module.exports = async(req, res) => {
         }
     })
 
-    let adverts = await Advert.find({})
+    let adverts = await Advert.find({});
 
     res.render("index", {
         posts,
