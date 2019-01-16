@@ -58,3 +58,12 @@ img {
     display: block;
     height: 200px;
   }
+
+
+.logo{
+    width: 18%;
+}
+
+.img-logo{
+    border-radius: 50%;
+}
