@@ -15,7 +15,7 @@ function handleComments() {
     }
 
 
-function handleSubmit() {
+function handleSubmit(event) {
     const id = event.target.id;
     event.preventDefault();
     var divv = document.querySelector(".message");
