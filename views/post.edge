@@ -76,7 +76,7 @@
               <button class="btn-sm btn btn-outline-success customButton" onclick=handleComments()>view comments</button>
               
               <div class="commentsDivInitial">
-              <form class="commentForm" id={{ id }} onsubmit=handleSubmit()  method="POST" encType="multipart/form-data">
+              <form class="commentForm" id={{ id }} onsubmit=handleSubmit(event)  method="POST" encType="multipart/form-data">
                   <div class="control-group">
                       <div class="form-group floating-label-form-group controls">
                         <label>Username</label>
